@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :public_folder, 'public'
     set :views, 'app/views'
-    set :session_secret, 'oreo_pancakes'
+    set :session_secret, 'apple_pancakes'
   end
 
   get "/" do
