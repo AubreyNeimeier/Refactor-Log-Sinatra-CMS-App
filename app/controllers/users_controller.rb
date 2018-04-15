@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       @user = User.create(username: params[:username], password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect to "/users/:#{@user.slug}"
+      redirect to "/users/#{@user.slug}"
     end
   end
 

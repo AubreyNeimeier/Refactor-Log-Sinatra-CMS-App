@@ -1,7 +1,7 @@
 <!-- #create new concern form  -->
-<h1> Create a new Concern below: </h1>
+<h1> Edit a new Concern below: </h1>
 <br></br>
-<form action="/concerns" method="post">
+<form action="/concerns/<%= @concern.id %>/edit" method="post">
 <label> File Name: </label>
 <!-- #dropdown --> <input type="text" name="file_name">
 <br><br>

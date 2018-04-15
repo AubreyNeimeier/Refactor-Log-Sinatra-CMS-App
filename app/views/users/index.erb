@@ -5,7 +5,7 @@
 
   <h2><%= project.name %></h2><br>
   <p><%= project.summary %></p>
-  <ul><%= project.concerns.each do |concerns|%>
+  <ul><% project.concerns.each do |concerns|%>
     <li> concern.name </li>
   </ul><% end %>
 <% end %>

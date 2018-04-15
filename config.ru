@@ -5,4 +5,7 @@ require './config/environment'
 # end
 
 use Rack::MethodOverride
+use UsersController
+use ProjectsController
+use ConcernsController
 run ApplicationController
