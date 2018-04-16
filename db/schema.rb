@@ -13,9 +13,8 @@
 ActiveRecord::Schema.define(version: 2018_04_12_161206) do
 
   create_table "concerns", force: :cascade do |t|
-    t.string "filename"
-    t.integer "line_of_code"
-    t.string "method_name"
+    t.string "file_name"
+    t.string "name_of_method"
     t.string "note"
     t.string "category"
     t.integer "project_id"

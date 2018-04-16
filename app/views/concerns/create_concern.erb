@@ -1,5 +1,12 @@
 <!-- #create new concern form  -->
 <h1> Create a new Concern below: </h1>
+  <label> Select from an Existing Project: </label><br>
+  <% @projects.each do |project| %>
+  <input type="radio" value="<%= project.id %>" name="project_id"><%= project.name %><br>
+  <% end %>
+  <br>OR<br>
+<label> Add a new Project Name: </label>
+<input type="text" name="project_name">
 <br></br>
 <form action="/concerns" method="post">
 <label> File Name: </label>
@@ -11,12 +18,14 @@
 <label> Note/Summary of Concern: </label>
 <textarea rows="4" cols="50" name="note"></textarea>
 <br><br>
-<label> Add a New Category of Concern: </label>
+<label> Add a Category of Concern: </label><br>
+"Syntax", "Scope", "Semantics", "Functionality", "Not DRY", "Not Single Responsibility", "Needs testing"<br>
 <input type="text" name="category">
-<br>OR<br>
-<label> Select from an Existing Category: </label><br>
-<% @categories.each do |category| %>
-<input type="checkbox" value="<%= category %>"><%= category %><br>
-<% end %>
+<!-- <br>OR<br>
+<label> Select from an Existing Category: </label><br> -->
+<!-- # <% @categories.each do |category| %>
+# <input type="checkbox" value="<%= category %>" name="category_ids[]"><%= category %><br>
+# <% end %> -->
+<br>
 <input type="submit" name="submit" value="submit">
 </form>
