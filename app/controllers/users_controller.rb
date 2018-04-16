@@ -1,4 +1,7 @@
+require 'rack-flash'
 class UsersController < ApplicationController
+  use Rack::Flash
+
   get "/signup" do
     erb :"users/signup"
   end
@@ -6,6 +9,7 @@ class UsersController < ApplicationController
   post "/signup" do
     if params[:username] == "" || params[:password] == ""
       redirect '/signup'
+      flash[:message] = "Username and Password are required"
     elsif (User.all.find_by(username: params[:username]))
       erb :"users/username_taken"
     else
