@@ -3,8 +3,9 @@
 
 <% @projects.each do |project|%>
 
-  <h2><%= project.name %></h2><br>
-  <p><%= project.summary %></p>
+  <h2>Project Name: <%= project.name %></h2><br>
+  <p>Project Summary: <%= project.summary %></p>
+  <h2> Concerns: </h2>
   <ul><% project.concerns.each do |concerns|%>
     <li> concern.name </li>
   </ul><% end %>

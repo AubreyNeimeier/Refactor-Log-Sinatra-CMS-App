@@ -1,0 +1,17 @@
+<!-- #create new concern form  -->
+<h1> Create a new Project below: </h1>
+<form action="/projects" method="post">
+  <label> Add a new Project Name: </label>
+  <input type="text" name="project[name]">
+  <br></br>
+  <label> Date Created: </label>
+  <!-- #dropdown --> <input type="text" name="project[date_created]">
+  <br><br>
+  <label> Languages: </label>
+  <input type="text" name="project[language]">
+  <br></br>
+  <label> Note/Summary of Project: </label>
+  <textarea rows="4" cols="50" name="project[summary]"></textarea>
+  <br><br>
+<input type="submit" name="submit" value="submit">
+</form>

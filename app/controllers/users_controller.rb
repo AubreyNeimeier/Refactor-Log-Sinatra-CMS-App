@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       @user = User.create(username: params[:username], password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect to "/users/#{@user.slug}"
+      redirect to "/concerns"
     end
   end
 
@@ -35,6 +35,11 @@ class UsersController < ApplicationController
     @cocnerns = Concern.where(user_id: @user.id)
     #binding.pry
     erb :"/users/index"
+  end
+
+  get "/logout" do
+    session.clear
+    redirect "/login"
   end
 
 end

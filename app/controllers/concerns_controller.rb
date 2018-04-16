@@ -3,7 +3,8 @@ class ConcernsController < ApplicationController
   get "/concerns" do
     if logged_in?
       @user = current_user
-      @projects = Project.where(user_id: @user)
+      @projects = current_user.projects
+      #the below needs work. each project has concerns method.
       @concerns = Concern.where(id: @user)
       erb :"concerns/index"
     else
@@ -23,6 +24,7 @@ class ConcernsController < ApplicationController
       redirect "/concerns/new"
     else
       @concern = Concern.create(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
+      @concern.project_id = current_user.id
       @concern.save
       redirect "concerns/#{@concern.id}"
     end
@@ -33,7 +35,7 @@ class ConcernsController < ApplicationController
       @concern = Concern.find_by_id(params[:id])
       #uncomment this when we can create new projects so that radio buttons can be selected
       #@project = Project.find_or_create_by(project_id: params[:project_id])
-      @slug = current_user.username.slug
+      @slug = current_user.slug
       erb :"concerns/show_concern"
     else
       redirect "/login"

@@ -1,5 +1,6 @@
 <!-- #create new concern form  -->
 <h1> Create a new Concern below: </h1>
+<form action="/concerns" method="post">
   <label> Select from an Existing Project: </label><br>
   <% @projects.each do |project| %>
   <input type="radio" value="<%= project.id %>" name="project_id"><%= project.name %><br>
@@ -8,7 +9,7 @@
 <label> Add a new Project Name: </label>
 <input type="text" name="project_name">
 <br></br>
-<form action="/concerns" method="post">
+
 <label> File Name: </label>
 <!-- #dropdown --> <input type="text" name="file_name">
 <br><br>
