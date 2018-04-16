@@ -1,22 +1,18 @@
 <!-- #create new concern form  -->
-<h1> Edit a new Concern below: </h1>
+<h1> Edit the Concern below: </h1>
 <br></br>
 <form action="/concerns/<%= @concern.id %>/edit" method="post">
 <label> File Name: </label>
-<!-- #dropdown --> <input type="text" name="file_name">
+<input type="text" name="file_name" placeholder="<%=@concern.file_name%>">
 <br><br>
 <label> Name of Method </label>
-<input type="text" name="name_of_method">
+<input type="text" name="name_of_method" placeholder="<%=@concern.name_of_method%>">
 <br></br>
 <label> Note/Summary of Concern: </label>
-<textarea rows="4" cols="50" name="note"></textarea>
+<textarea rows="4" cols="50" name="note" placeholder="<%=@concern.note%>"></textarea>
 <br><br>
-<label> Add a New Category of Concern: </label>
-<input type="text" name="category">
-<br>OR<br>
-<label> Select from an Existing Category: </label><br>
-<% @categories.each do |category| %>
-<input type="checkbox" value="<%= category %>"><%= category %><br>
-<% end %>
+<label> Category of Concern: "Syntax", "Scope", "Semantics", "Functionality", "Not DRY", "Not Single Responsibility", "Needs testing"</label>
+<input type="text" name="category" placeholder="<%=@concern.category%>">
 <input type="submit" name="submit" value="submit">
 </form>
+<a href="/concerns">Go Back </a><br>

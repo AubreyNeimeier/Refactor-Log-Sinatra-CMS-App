@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   post "/signup" do
     if params[:username] == "" || params[:password] == ""
       redirect '/signup'
+    elsif (User.all.find_by(username: params[:username]))
+      erb :"users/username_taken"
     else
       @user = User.create(username: params[:username], password: params[:password])
       @user.save

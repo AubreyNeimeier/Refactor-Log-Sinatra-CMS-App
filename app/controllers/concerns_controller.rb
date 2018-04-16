@@ -42,15 +42,14 @@ class ConcernsController < ApplicationController
   end
 
   get "/concerns/:id/edit" do
-    if logged_in?
-      @concern = Concern.find_by_id(params[:id])
+    @concern = Concern.find_by_id(params[:id])
+    if logged_in? && @concern.user_id == current_user.id
+      @categories = ["Syntax", "Scope", "Semantics", "Functionality", "Not DRY", "Not Single Responsibility", "Needs testing"]
       erb :"concerns/edit_concern"
     else
       redirect to "/login"
     end
   end
-
-
 
   post "/concerns/:id" do
     #catching edits to a concern

@@ -6,5 +6,6 @@
 <p>Type of Concern: <%= @concern.category %></p>
 <form method="post" action="/concerns/<%= @concern.id%>/delete">
 <input type="hidden" name="_method" id="hidden" value="DELETE">
-<input type="submit" value="Delete Concern">
-<a href="/concerns">Go Back </a>
+<input type="submit" value="Delete Concern"><br><br>
+<a href="/concerns/<%= @concern.id%>/edit"> Edit Concern </a><br>
+<a href="/concerns">Go Back </a><br>
