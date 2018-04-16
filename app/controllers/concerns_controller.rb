@@ -5,7 +5,6 @@ class ConcernsController < ApplicationController
       @user = current_user
       @projects = current_user.projects
       #the below needs work. each project has concerns method.
-      @concerns = Concern.where(id: @user)
       erb :"concerns/index"
     else
       redirect "/login"
@@ -24,18 +23,18 @@ class ConcernsController < ApplicationController
       redirect "/concerns/new"
     else
       @concern = Concern.create(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
-      @concern.project_id = current_user.id
+      @concern.user_id = current_user.id
       @concern.save
       redirect "concerns/#{@concern.id}"
     end
   end
 
   get "/concerns/:id" do
+
     if logged_in?
       @concern = Concern.find_by_id(params[:id])
       #uncomment this when we can create new projects so that radio buttons can be selected
       #@project = Project.find_or_create_by(project_id: params[:project_id])
-      @slug = current_user.slug
       erb :"concerns/show_concern"
     else
       redirect "/login"
@@ -62,6 +61,16 @@ class ConcernsController < ApplicationController
       @concern.update(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
       @concern.save
       redirect "/concerns/#{@concern.id}"
+    end
+  end
+
+  delete "/concerns/:id/delete" do
+    @concern = Concern.find_by_id(params[:id])
+    if logged_in? && @concern.user_id == current_user.id
+      @concern.delete
+      redirect "/concerns"
+    else
+      redirect '/login'
     end
   end
 

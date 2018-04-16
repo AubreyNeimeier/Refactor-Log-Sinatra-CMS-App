@@ -4,4 +4,7 @@
 <p>Located within method: <%= @concern.name_of_method %></p>
 <p>Note/Summary of Concern: <%= @concern.note %></p>
 <p>Type of Concern: <%= @concern.category %></p>
-<a href="/projects">Go Back </a>
+<form method="post" action="/concerns/<%= @concern.id%>/delete">
+<input type="hidden" name="_method" id="hidden" value="DELETE">
+<input type="submit" value="Delete Concern">
+<a href="/concerns">Go Back </a>

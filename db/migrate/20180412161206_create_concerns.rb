@@ -5,6 +5,7 @@ class CreateConcerns < ActiveRecord::Migration[5.2]
       t.string :name_of_method
       t.string :note
       t.string :category
+      t.integer :user_id
       t.integer :project_id
     end
   end

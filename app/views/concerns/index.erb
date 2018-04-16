@@ -3,13 +3,16 @@
 
 <% @projects.each do |project|%>
 
-  <h2>Project Name: <%= project.name %></h2><br>
+  <h4>Project Name: <%= project.name %></h4>
   <p>Project Summary: <%= project.summary %></p>
-  <h2> Concerns: </h2>
-  <ul><% project.concerns.each do |concerns|%>
-    <li> concern.name </li>
-  </ul><% end %>
+  <p> Concerns </p>
+  <ul><% project.concerns.each do |concern|%>
+    <li><a href="/concerns/<%= concern.id %>"> <%=concern.name_of_method%></a> - Error related to: <%= concern.category%> </li>
+  <% end %></ul>
 <% end %>
+<br><br>
+<a href="/projects/new"> Create a new Project </a><br>
+<a href="/concerns/new"> Create a new concern </a>
 
 
 <!-- Fwitter

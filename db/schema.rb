@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_04_12_161206) do
     t.string "name_of_method"
     t.string "note"
     t.string "category"
+    t.integer "user_id"
     t.integer "project_id"
   end
 
