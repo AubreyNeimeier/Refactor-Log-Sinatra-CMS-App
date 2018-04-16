@@ -1,0 +1,17 @@
+<!-- users homepage showing them only their concerns  -->
+<h1>All Your Projects</h1>
+
+<% @projects.each do |project|%>
+
+  <h2><%= project.name %></h2><br>
+  <p><%= project.summary %></p>
+  <ul><% project.concerns.each do |concerns|%>
+    <li> concern.name </li>
+  </ul><% end %>
+<% end %>
+
+
+<!-- Fwitter
+A fake twitter built for flatiron
+  -  /signup validation
+  - /login password format -->

@@ -22,12 +22,13 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
        session[:user_id] = @user.id
-       redirect to "/users/#{@user.slug}"
+       redirect to "/concerns"
      else
        redirect "/login"
      end
   end
 
+#remove below route?
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     @projects = Project.where(user_id: @user.id)
