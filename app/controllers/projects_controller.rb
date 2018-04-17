@@ -14,6 +14,17 @@ class ProjectsController < ApplicationController
     end
   end
 
+  get "/projects/:id" do
+    @project = Project.find_by_id(params[:id])
+    @concerns = Concern.where(user_id: current_user.id)
+    if logged_in? && @project.user_id == current_user.id
+      erb :"/projects/show_project"
+    else
+      redirect "/login"
+    end
+  end
+
+
   get "/projects/:id/edit" do
     @project = Project.find_by_id(params[:id])
     erb :"/projects/edit_project"
@@ -21,6 +32,9 @@ class ProjectsController < ApplicationController
 
   post "/projects/:id" do
     @project = Project.fnd_by_id(params[:id])
+    @project.update(params[:project])
+    @project.save
+    redirect "/projects/#{@project.id}"
   end
 
 
