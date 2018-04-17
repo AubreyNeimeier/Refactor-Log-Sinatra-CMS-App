@@ -3,7 +3,7 @@
 <h3> Project Summary :<%= @project.summary%> </h3>
 <h3> Concerns: </h3>
 <ul> <% @concerns.each do |concern| %>
-  <li><a href="concerns/<%=concern.id%>"><%= concern.name_of_method %> - Error: <%=concern.category%></a></li>
+  <li><a href="../concerns/<%= concern.id %>"><%= concern.name_of_method %> - Error: <%=concern.category%></a></li>
   <% end %></ul><br>
 <a href="/projects/<%= @project.id%>/edit"> Edit Project </a><br><br>
 <a href="/concerns">Home</a><br>

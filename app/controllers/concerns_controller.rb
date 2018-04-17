@@ -1,3 +1,4 @@
+require 'rack-flash'
 class ConcernsController < ApplicationController
 
   get "/concerns" do
@@ -20,7 +21,7 @@ class ConcernsController < ApplicationController
   post "/concerns" do
     #binding.pry
     if params[:note] == "" || params[:file_name] == "" || params[:name_of_method] == ""
-      flash[:message] = "A note and file name are required."
+      flash[:message] = "A note and file name, and method name are required."
       redirect "/concerns/new"
     else
       @concern = Concern.create(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
@@ -57,6 +58,7 @@ class ConcernsController < ApplicationController
     #catching edits to a concern
     @concern = Concern.find_by_id(params[:id])
     if params[:note] == "" || params[:file_name] == ""
+      flash[:message] = "A note and file name are required."
       redirect to "/concerns/#{@concern.id}/edit"
     else
       @concern.update(note: params[:note], category: params[:category])

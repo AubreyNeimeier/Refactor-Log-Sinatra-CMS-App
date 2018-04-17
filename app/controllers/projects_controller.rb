@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   get "/projects/:id" do
     @project = Project.find_by_id(params[:id])
     if @project && logged_in? && @project.user_id == current_user.id
-      @concerns = Concern.where(user_id: current_user.id)
+      @concerns = Concern.where(project_id: params[:id])
       erb :"/projects/show_project"
     else
       redirect "/login"
