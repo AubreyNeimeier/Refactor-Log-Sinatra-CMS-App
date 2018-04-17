@@ -19,11 +19,11 @@ class ConcernsController < ApplicationController
 
   post "/concerns" do
     #binding.pry
-    if params[:note] == ""
+    if params[:note] == "" || params[:file_name] == "" || params[:name_of_method] == ""
       flash[:message] = "A note and file name are required."
       redirect "/concerns/new"
     else
-      @concern = Concern.update(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
+      @concern = Concern.create(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
       @concern.user_id = current_user.id
       @concern.save
       redirect "concerns/#{@concern.id}"
@@ -44,6 +44,7 @@ class ConcernsController < ApplicationController
 
   get "/concerns/:id/edit" do
     @concern = Concern.find_by_id(params[:id])
+    @project_name = Project.find_by_id(@concern.project_id).name
     if logged_in? && @concern.user_id == current_user.id
       @categories = ["Syntax", "Scope", "Semantics", "Functionality", "Not DRY", "Not Single Responsibility", "Needs testing"]
       erb :"concerns/edit_concern"
@@ -58,7 +59,7 @@ class ConcernsController < ApplicationController
     if params[:note] == "" || params[:file_name] == ""
       redirect to "/concerns/#{@concern.id}/edit"
     else
-      @concern.update(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
+      @concern.update(note: params[:note], category: params[:category])
       @concern.save
       redirect "/concerns/#{@concern.id}"
     end
