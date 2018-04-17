@@ -44,8 +44,8 @@ class ConcernsController < ApplicationController
 
   get "/concerns/:id/edit" do
     @concern = Concern.find_by_id(params[:id])
-    @project_name = Project.find_by_id(@concern.project_id).name
-    if logged_in? && @concern.user_id == current_user.id
+    if @concern && logged_in? && @concern.user_id == current_user.id
+      @project_name = Project.find_by_id(@concern.project_id).name
       @categories = ["Syntax", "Scope", "Semantics", "Functionality", "Not DRY", "Not Single Responsibility", "Needs testing"]
       erb :"concerns/edit_concern"
     else
