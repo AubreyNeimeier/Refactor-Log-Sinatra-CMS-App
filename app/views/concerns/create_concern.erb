@@ -8,23 +8,18 @@
   <% @projects.each do |project| %>
   <input type="radio" value="<%= project.id %>" name="project_id"><%= project.name %><br>
   <% end %>
-  <br>OR<br>
-<label> Add a new Project Name: </label>
-<input type="text" name="project_name">
-<br></br>
-
-<label> File Name: </label>
-<!-- #dropdown --> <input type="text" name="file_name">
-<br><br>
-<label> Name of Method </label>
-<input type="text" name="name_of_method">
-<br></br>
-<label> Note/Summary of Concern: </label>
-<textarea rows="4" cols="50" name="note"></textarea>
-<br><br>
-<label> Add a Category of Concern:  </label><br>
-"Syntax", "Scope", "Semantics", "Functionality", "Not DRY", "Not Single Responsibility", "Needs testing"<br>
-<input type="text" name="category">
+  <label> File Name: * </label>
+  <!-- #dropdown --> <input type="text" name="file_name">
+  <br><br>
+  <label> Name of Method *</label>
+  <input type="text" name="name_of_method">
+  <br></br>
+  <label> Note/Summary of Concern: *</label>
+  <textarea rows="4" cols="50" name="note"></textarea>
+  <br><br>
+  <label> Add a Category of Concern:  </label><br>
+  "Syntax", "Scope", "Semantics", "Functionality", "Not DRY", "Not Single Responsibility", "Needs testing" or "Other"<br>
+  <input type="text" name="category">
 <!-- <br>OR<br>
 <label> Select from an Existing Category: </label><br> -->
 <!-- # <% @categories.each do |category| %>
