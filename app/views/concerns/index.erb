@@ -5,7 +5,7 @@
 
   <h4>Project Name: <%= project.name %></h4>
   <p>Project Summary: <%= project.summary %></p>
-  <p> Concerns </p>
+  <h4> Concerns </h4>
   <ul><% project.concerns.each do |concern|%>
     <li><a href="/concerns/<%= concern.id %>"> <%=concern.name_of_method%></a> - Error related to: <%= concern.category%> </li>
   <% end %></ul>

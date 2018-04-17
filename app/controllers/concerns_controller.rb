@@ -19,11 +19,11 @@ class ConcernsController < ApplicationController
 
   post "/concerns" do
     #binding.pry
-    if params[:note] == "" || params[:file_name] == ""
+    if params[:note] == ""
       flash[:message] = "A note and file name are required."
       redirect "/concerns/new"
     else
-      @concern = Concern.create(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
+      @concern = Concern.update(file_name: params[:file_name], name_of_method: params[:name_of_method], note: params[:note], category: params[:category], project_id: params[:project_id])
       @concern.user_id = current_user.id
       @concern.save
       redirect "concerns/#{@concern.id}"
