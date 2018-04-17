@@ -14,6 +14,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  get "/projects/:id/edit" do
+    @project = Project.find_by_id(params[:id])
+    erb :"/projects/edit_project"
+  end
+
+  post "/projects/:id" do
+    @project = Project.fnd_by_id(params[:id])
+  end
+
+
   delete "/projects/:id/delete" do
     @project = Project.find_by_id(params[:id])
     if logged_in? && @project.user_id == current_user.id

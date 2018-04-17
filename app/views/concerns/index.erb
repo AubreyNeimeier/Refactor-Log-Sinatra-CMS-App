@@ -3,7 +3,7 @@
 
 <% @projects.each do |project|%>
 
-  <h4>Project Name: <%= project.name %></h4>
+  <a href="projects/<%=project.id%>/edit"><h4><%= project.name %> - <%= project.date_created %></h4></a>
   <p>Project Summary: <%= project.summary %></p>
   <h4> Concerns </h4>
   <ul><% project.concerns.each do |concern|%>
