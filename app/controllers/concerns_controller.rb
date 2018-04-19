@@ -19,7 +19,7 @@ class ConcernsController < ApplicationController
   end
 
   post "/concerns" do
-    #binding.pry
+    #catches data to create a new concern
     if params[:note] == "" || params[:file_name] == "" || params[:name_of_method] == ""
       flash[:message] = "A note and file name, and method name are required."
       redirect "/concerns/new"
@@ -35,8 +35,7 @@ class ConcernsController < ApplicationController
 
     if logged_in?
       @concern = Concern.find_by_id(params[:id])
-      #uncomment this when we can create new projects so that radio buttons can be selected
-      #@project = Project.find_or_create_by(project_id: params[:project_id])
+      @project = Project.find_by(project_id: params[:project_id])
       erb :"concerns/show_concern"
     else
       redirect "/login"
