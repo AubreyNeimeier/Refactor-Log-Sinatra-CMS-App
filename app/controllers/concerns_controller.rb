@@ -20,7 +20,7 @@ use Rack::Flash
 
   post "/concerns" do
     #catches data to create a new concern
-    if params[:note] == "" || params[:file_name] == "" || params[:name_of_method] == ""
+    if params[:note] == "" || params[:file_name] == "" || params[:name_of_method] == "" || params[:project_id].nil?
       flash[:message] = "A note and file name, and method name are required."
       redirect "/concerns/new"
     else
