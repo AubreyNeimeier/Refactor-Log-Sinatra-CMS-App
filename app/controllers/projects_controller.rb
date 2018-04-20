@@ -1,18 +1,18 @@
 class ProjectsController < ApplicationController
+  use Rack::Flash
   get "/projects/new" do
     erb :"projects/create_project"
   end
 
   post "/projects" do
-    if logged_in? && !params[:project][:name] == "" && !params[:project][:date_created] == "" && !params[:project][:summary] == ""
-      flash[:message] = "A note and file name, and method name are required."
+    if params[:project][:name] == "" || params[:project][:date_created] == "" || params[:project][:summary] == ""
+      flash[:message] = "A name, date, and summary are required."
+      redirect "/projects/new"
+    else
       @project = Project.create(params[:project])
       @project.user_id = current_user.id
       @project.save
-      redirect "/concerns"
-    else
-      flash[:message] = "A name, date, and summary are required."
-      redirect "/login"
+      redirect "/projects/#{@project.id}"
     end
   end
 

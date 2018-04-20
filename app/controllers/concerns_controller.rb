@@ -1,6 +1,6 @@
 require 'rack-flash'
 class ConcernsController < ApplicationController
-
+use Rack::Flash
   get "/concerns" do
     if logged_in?
       @user = current_user
@@ -35,7 +35,7 @@ class ConcernsController < ApplicationController
 
     if logged_in?
       @concern = Concern.find_by_id(params[:id])
-      @project = Project.find_by(project_id: params[:project_id])
+      @project = Project.find_by(id: @concern.project_id)
       erb :"concerns/show_concern"
     else
       redirect "/login"
